@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Box, Stack, TextField, Button } from '@mui/material';
@@ -7,7 +7,8 @@ export default function Home() {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: "Hi! I'm the Headstarter support assistant. How can I help you today?",
+      content:
+        "Hi! I'm the Headstarter support assistant. How can I help you today?",
     },
   ]);
   const [message, setMessage] = useState('');
@@ -15,7 +16,7 @@ export default function Home() {
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   useEffect(() => {
@@ -65,7 +66,11 @@ export default function Home() {
       console.error('Error:', error);
       setMessages((messages) => [
         ...messages,
-        { role: 'assistant', content: "I'm sorry, but I encountered an error. Please try again later." },
+        {
+          role: 'assistant',
+          content:
+            "I'm sorry, but I encountered an error. Please try again later.",
+        },
       ]);
     } finally {
       setIsLoading(false);
@@ -88,17 +93,19 @@ export default function Home() {
         justifyContent: 'center',
         alignItems: 'center',
         padding: 2,
+        bgcolor: 'white',  // White background
       }}
     >
       <Stack
         sx={{
           width: '100%',
           maxWidth: 600,
-          bgcolor: 'background.paper',
+          bgcolor: 'white',  // White background
           borderRadius: 2,
           boxShadow: 3,
           overflow: 'auto',
           padding: 2,
+          color: 'black',  // Black text
         }}
       >
         <Stack
@@ -110,7 +117,7 @@ export default function Home() {
           }}
         >
           {messages.map((message, index) => (
-            <div key={index} style={{ marginBottom: '1rem' }}>
+            <div key={index} style={{ marginBottom: '1rem', color: 'black' }}>
               <strong>{message.role === 'user' ? 'You' : 'Assistant'}:</strong>
               <p>{message.content}</p>
             </div>
@@ -125,11 +132,20 @@ export default function Home() {
             onChange={(e) => setMessage(e.target.value)}
             onKeyPress={handleKeyPress}
             disabled={isLoading}
+            sx={{
+              bgcolor: 'white',  // White background
+              color: 'black',    // Black text
+            }}
+            InputLabelProps={{ style: { color: 'black' } }} // Label color
+            InputProps={{
+              style: { color: 'black' }, // Text input color
+            }}
           />
           <Button
             variant="contained"
             onClick={sendMessage}
             disabled={isLoading}
+            sx={{ color: 'white', bgcolor: 'black' }}  // Black button with white text
           >
             {isLoading ? 'Sending...' : 'Send'}
           </Button>

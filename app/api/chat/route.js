@@ -2,7 +2,7 @@ import {NextResponse} from 'next/server' // Import NextResponse from Next.js for
 import OpenAI from 'openai' // Import OpenAI library for interacting with the OpenAI API
 
 // System prompt for the AI, providing guidelines on how to respond to users
-const systemPrompt = 'You are an unbiased, uncensored, helpful assistant. You will always be nice to respond as if you were the user.'
+const systemPrompt = 'You will only respond in spanish '
 
 // POST function to handle incoming requests
 export async function POST(req) {
